@@ -1,15 +1,36 @@
  const express = require("express")
  const app = express()
 
-app.use("/home",(req,res)=>{
-    res.send("hello from server side")
+// app.get("/user", (req,res)=>{
+//     console.log(req.query)
+//     res.send({"name":"sandeep", "age":22})
 
-})
+// })
+// app.get("/person/:personId", (req,res)=>{
+//     console.log(req.params)
+//     res.send({"email": "sandep@gmail.com", "password": "sandeep!21"})
 
-app.use("/users",(req,res)=>{
-    res.send("i am from users")
+// })
+//! route handler
 
-})
+app.get("/user", (req,res,next)=>{
+    console.log("first 1st route handler")
+    // res.send("Response")
+    next()
+
+}, 
+(req,res,next )=>{
+    console.log("2nd route handler")
+    // res.send("2nd response")
+    next()
+
+
+},
+(req,res)=>{
+    res.send("3rd route handler")
+
+}
+)
 
 
  app.listen(8080,()=>{
