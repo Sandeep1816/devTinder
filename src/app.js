@@ -1,36 +1,35 @@
  const express = require("express")
  const app = express()
 
-// app.get("/user", (req,res)=>{
-//     console.log(req.query)
-//     res.send({"name":"sandeep", "age":22})
+//  app.get("/getUserData", (req,res)=>{
+//     throw new Error("abcdefg")
 
-// })
-// app.get("/person/:personId", (req,res)=>{
-//     console.log(req.params)
-//     res.send({"email": "sandep@gmail.com", "password": "sandeep!21"})
+//     res.send("User data is sent")
 
-// })
-//! route handler
+//  })
 
-app.get("/user", (req,res,next)=>{
-    console.log("first 1st route handler")
-    // res.send("Response")
-    next()
+//  app.use("/", (err,req,res,next)=>{
+//     if(err){
+//         res.status(500).send("something went wrong")
+//     }
+//  })
 
-}, 
-(req,res,next )=>{
-    console.log("2nd route handler")
-    // res.send("2nd response")
-    next()
+app.get("/getUserData", (req,res)=>{
+    try{
+        throw new Error("abcdef")
+
+        res.send("User data sent")
+    } catch (err){
+        res.status(500).send("some error contact suppert team")
+        
+
+    }
+})
 
 
-},
-(req,res)=>{
-    res.send("3rd route handler")
 
-}
-)
+
+
 
 
  app.listen(8080,()=>{
