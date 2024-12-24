@@ -3,22 +3,19 @@
  const app = express()
  const User = require("./models/user")
 
+ app.use(express.json())
+
  app.post("/signup", async(req,res)=>{
-    const user = new User({
-        firstName:"Sandeep",
-        lastName:"Avala",
-        emailId:"sandeep@gmail.com",
-        password:"Sandeep@21"
-    })
-   await user.save()
-    res.send("data posted successfully")
+    const user = new User(req.body)
+
+try{
+    await user.save()
+    res.send("user data is posted successfully")
+}catch(err){
+    res.status(400).send("Error occured ")
+}
 
  })
-
- 
-
-
-
 
 
  connectDB()
